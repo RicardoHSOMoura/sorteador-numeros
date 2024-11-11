@@ -3,13 +3,21 @@ function sortear() {
   let de  = parseInt(document.getElementById('de').value);
   let ate = parseInt(document.getElementById('ate').value);
 
-  let numeroAleatorio = obterNumerosAleatorios(de,ate);
+  let numeroAleatorio = []
+  
+  numeroAleatorio = obterNumerosAleatorios(de,ate);
   console.log(`numeroAleatorio: ${numeroAleatorio}`)
 
 }
 
 function obterNumerosAleatorios(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  let contador = 0
+  while (contador < quantidade) {
+    let numAleat = Math.floor(Math.random() * (max - min + 1)) + min;
+    numeroAleatorio.push(numAleat)
+    contador++;
+  }
+  return numeroAleatorio;
 }
 
 function reiniciar() {
