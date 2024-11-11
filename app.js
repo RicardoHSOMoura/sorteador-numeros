@@ -3,16 +3,26 @@ function sortear() {
   let de  = parseInt(document.getElementById('de').value);
   let ate = parseInt(document.getElementById('ate').value);
 
+  if(de >= ate) {
+    alert('Campo "Do número" deve ser inferior ao campo "Até o número". Verifique!!!');
+    return;
+  }
+
   let numerosAleatorios = []
   
   for (let i = 0; i < quantidade; i++) {
     let numeros = obterNumerosAleatorios(de, ate)
-    while(numerosAleatorios.includes(numeros)) {
-      numeros = obterNumerosAleatorios(de, ate)
+    if(quantidade >= ate - de) {
+      alert('A quantidade entre os valores dos campos "Do número" e "Até o número" devem ser maior do que o valor inserido no campo "Quantidades de números". Verifique!!!');
+      return;
+    } else {
+      while(numerosAleatorios.includes(numeros)) {
+        numeros = obterNumerosAleatorios(de, ate)
+      }
+      numerosAleatorios.push(numeros);
+  
+      alterarBotaoReiniciar()
     }
-    numerosAleatorios.push(numeros);
-
-    alterarBotaoReiniciar()
   }
 
   let resultado = document.getElementById('resultado')
